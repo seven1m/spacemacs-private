@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: con
+# key: con
+# binding: direct-keybinding
+# --
+context '${thing}' do
+  $0
+end

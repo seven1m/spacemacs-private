@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: log
+# key: log
+# binding: direct-keybinding
+# --
+Rails.logger.info('-----------------------------')
+Rails.logger.info($0)
+Rails.logger.info('-----------------------------')

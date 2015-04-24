@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: desc
+# key: desc
+# binding: direct-keybinding
+# --
+describe '${thing}' do
+  $0
+end
