@@ -139,6 +139,7 @@ layers configuration."
   (global-company-mode)
   (setq-default ruby-version-manager 'rvm)
   (setq-default ruby-enable-ruby-on-rails-support t)
+  (setq-default enh-ruby-deep-indent-paren nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
