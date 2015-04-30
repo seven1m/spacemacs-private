@@ -21,6 +21,7 @@
     two-space-indent
     new-empty-buffer
     fill-col-120
+    save-buffer-always
     )
   "List of all extensions to load after the packages.")
 
@@ -63,3 +64,12 @@
   (set-fill-column 120)
   (add-hook 'enh-ruby-mode-hook
     (fci-mode 1)))
+
+(defun tim/init-save-buffer-always ()
+  (defun save-buffer-always ()
+    "Save the buffer even if it is not modified."
+    (interactive)
+    (set-buffer-modified-p t)
+    (save-buffer))
+  (global-set-key (kbd "C-s") 'save-buffer-always)
+  )
