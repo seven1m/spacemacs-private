@@ -22,6 +22,8 @@
     new-empty-buffer
     fill-col-120
     save-buffer-always
+    simple-folding
+    disable-smartparens
     )
   "List of all extensions to load after the packages.")
 
@@ -46,6 +48,12 @@
               (setq-default
                tab-width 2
                indent-tabs-mode nil
+               evil-shift-width 2)))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (setq-default
+               tab-width 2
+               indent-tabs-mode nil
                evil-shift-width 2))))
 
 (defun tim/init-new-empty-buffer ()
@@ -63,7 +71,8 @@
 (defun tim/init-fill-col-120 ()
   (set-fill-column 120)
   (add-hook 'enh-ruby-mode-hook
-    (fci-mode 1)))
+    (fci-mode 1))
+  )
 
 (defun tim/init-save-buffer-always ()
   (defun save-buffer-always ()
@@ -72,4 +81,23 @@
     (set-buffer-modified-p t)
     (save-buffer))
   (global-set-key (kbd "C-s") 'save-buffer-always)
+  )
+
+(defun tim/init-simple-folding ()
+  (defun toggle-selective-display (column)
+    (interactive "P")
+    (set-selective-display
+     (or column
+         (unless selective-display
+           (1+ (current-column))))))
+  )
+
+(defun tim/init-disable-smartparens ()
+  (eval-after-load 'smartparens
+    '(progn
+      (sp-pair "(" nil :actions :rem)
+      (sp-pair "[" nil :actions :rem)
+      (sp-pair "{" nil :actions :rem)
+      (sp-pair "'" nil :actions :rem)
+      (sp-pair "\"" nil :actions :rem)))
   )

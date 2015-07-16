@@ -12,6 +12,12 @@
 
 (defvar tim-packages
   '(
+    editorconfig
+    haml-mode
+    jsx-mode
+    php-mode
+    rust-mode
+    slim-mode
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -29,5 +35,11 @@ which require an initialization must be listed explicitly in the list.")
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
 
-(defun tim/init-rinari ()
-  (require 'rinari))
+(defun tim/init-editorconfig ())
+(defun tim/init-haml-mode ())
+(defun tim/init-jsx-mode ()
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+  (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
+(defun tim/init-php-mode ())
+(defun tim/init-rust-mode ())
+(defun tim/init-slim-mode ())
