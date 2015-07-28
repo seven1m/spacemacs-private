@@ -23,6 +23,7 @@
     save-buffer-always
     simple-folding
     disable-smartparens
+    goto-file
     )
   "List of all extensions to load after the packages.")
 
@@ -94,4 +95,8 @@
       (sp-pair "{" nil :actions :rem)
       (sp-pair "'" nil :actions :rem)
       (sp-pair "\"" nil :actions :rem)))
+  )
+
+(defun tim/init-goto-file ()
+  (define-key evil-normal-state-map "gf" 'projectile-rails-goto-file-at-point)
   )
