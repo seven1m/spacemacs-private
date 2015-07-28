@@ -20,7 +20,6 @@
     better-ruby-identifiers
     two-space-indent
     new-empty-buffer
-    fill-col-120
     save-buffer-always
     simple-folding
     disable-smartparens
@@ -66,12 +65,6 @@
       (setq buffer-offer-save t)))
   (evil-leader/set-key
     "bN" 'new-empty-buffer)
-  )
-
-(defun tim/init-fill-col-120 ()
-  (set-fill-column 120)
-  (add-hook 'enh-ruby-mode-hook
-    (fci-mode 1))
   )
 
 (defun tim/init-save-buffer-always ()
