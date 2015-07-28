@@ -53,7 +53,8 @@
               (setq-default
                tab-width 2
                indent-tabs-mode nil
-               evil-shift-width 2))))
+               evil-shift-width 2
+               js-indent-level 2))))
 
 (defun tim/init-new-empty-buffer ()
   (defun new-empty-buffer ()
