@@ -16,7 +16,6 @@
       version-control
       markdown
       syntax-checking
-      tim
       editorconfig
       evil-commentary
       ruby
@@ -25,9 +24,12 @@
       restclient
       git
       github
+      org
+      react
+      tim
       )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(flycheck-pos-tip)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -60,8 +62,8 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         solarized-dark)
+   dotspacemacs-themes '(solarized-dark
+                         solarized-light)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -139,10 +141,20 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-company-mode)
-  (setq-default ruby-version-manager 'rvm)
+  (setq-default ruby-version-manager 'rbenv)
   (setq-default ruby-enable-ruby-on-rails-support t)
   (setq-default enh-ruby-deep-indent-paren nil)
   (setq-default fill-column 120)
+  (setq tags-add-tables nil)
+  (global-evil-matchit-mode 1)
+  (add-hook 'hack-local-variables-hook (lambda () (
+    setq truncate-lines t)))
+  (setq-default yas-indent-line nil)
+  ;(fset 'evil-visual-update-x-selection 'ignore)
+  (add-to-list 'auto-mode-alist '(".*\\.js[x]?\\'" . js2-mode))
+  (setq tern-command '("tern" "--no-port-file"))
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -157,9 +169,15 @@ layers configuration."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(js2-basic-offset 2)
  '(jsx-indent-level 2)
+ '(js-indent-level 2)
  '(paradox-github-token t)
- '(ring-bell-function (quote ignore) t))
+ '(ring-bell-function (quote ignore) t)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
+ '(web-mode-sql-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

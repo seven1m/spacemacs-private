@@ -13,11 +13,13 @@
 (defvar tim-packages
   '(
     editorconfig
+    elixir-mode
     haml-mode
-    jsx-mode
     php-mode
+    ruby-refactor
     rust-mode
     slim-mode
+    web-mode
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -36,10 +38,25 @@ which require an initialization must be listed explicitly in the list.")
 ;; https://github.com/jwiegley/use-package
 
 (defun tim/init-editorconfig ())
+(defun tim/init-elixir-mode ())
 (defun tim/init-haml-mode ())
-(defun tim/init-jsx-mode ()
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-  (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
+;; (defun tim/init-jsx-mode ()
+;;   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+;;   (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
 (defun tim/init-php-mode ())
+(defun tim/init-ruby-refactor ()
+  (add-hook 'ruby-mode-hook 'ruby-refactor-mode-launch)
+  (setq-default ruby-refactor-add-parens t)
+  (evil-leader/set-key
+    "orc" 'ruby-refactor-extract-constant
+    "orv" 'ruby-refactor-extract-local-variable
+    "orm" 'ruby-refactor-extract-to-method
+    "orp" 'ruby-refactor-add-parens))
 (defun tim/init-rust-mode ())
 (defun tim/init-slim-mode ())
+(defun tim/init-yafolding ()
+  (use-package yafolding))
+;; (defun tim/init-web-mode ()
+;;   (require 'web-mode)
+;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode)))
+
