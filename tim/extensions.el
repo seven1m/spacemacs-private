@@ -41,8 +41,8 @@
 ;; https://github.com/jwiegley/use-package
 
 (defun tim/init-better-identifiers ()
-  (add-hook 'enh-ruby-mode-hook
-    (lambda () (modify-syntax-entry ?_ "w" enh-ruby-mode-syntax-table)))
+  (add-hook 'ruby-mode-hook
+    (lambda () (modify-syntax-entry ?_ "w" ruby-mode-syntax-table)))
   (add-hook 'elixir-mode-hook
     (lambda () (modify-syntax-entry ?_ "w" elixir-mode-syntax-table)))
 )

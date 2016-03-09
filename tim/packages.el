@@ -15,7 +15,9 @@
     editorconfig
     elixir-mode
     haml-mode
+    helm-dash
     php-mode
+    ruby-hash-syntax
     ruby-refactor
     rust-mode
     slim-mode
@@ -40,10 +42,27 @@ which require an initialization must be listed explicitly in the list.")
 (defun tim/init-editorconfig ())
 (defun tim/init-elixir-mode ())
 (defun tim/init-haml-mode ())
+(defun tim/init-helm-dash ()
+  (setq helm-dash-browser-func 'eww)
+  (evil-leader/set-key
+    "odd" 'helm-dash
+    "odp" 'helm-dash-at-point)
+  (defun ruby-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("Ruby" "Ruby on Rails")))
+
+  (add-hook 'ruby-mode-hook 'ruby-doc)
+  (add-hook 'haml-mode-hook 'ruby-doc)
+  (add-hook 'slim-mode-hook 'ruby-doc)
+  )
 ;; (defun tim/init-jsx-mode ()
 ;;   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
 ;;   (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
 (defun tim/init-php-mode ())
+(defun tim/init-ruby-hash-syntax ()
+  (require 'ruby-hash-syntax)
+  (evil-leader/set-key
+    "orh" 'ruby-toggle-hash-syntax))
 (defun tim/init-ruby-refactor ()
   (add-hook 'ruby-mode-hook 'ruby-refactor-mode-launch)
   (setq-default ruby-refactor-add-parens t)
